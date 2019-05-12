@@ -178,10 +178,9 @@ class nnHandler(MP.Process):
 
 	def fit(self,arg):
 		"""Fits the NN according to the training data provided"""
-		name,inState,outP,outV,request_pipe = arg
+		name,inState,outP,outV,numSamples,request_pipe = arg
 		#view = [[state,p,v] for state,p,v in zip(inState,outP,outV)]
 		#print(view)
-		numSamples = len(outP)
 		hist = self.nnList[name].fit(
 								NP.reshape(inState,[numSamples]+self.val_nnInputShape),
 									{'POutput':NP.reshape(outP,[numSamples]+[self.val_pOutputShape]),
